@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { HeaderHeuristicaComponent } from "./components/header-heuristicaComponent/header-heuristicaComponent";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, HeaderHeuristicaComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

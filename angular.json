@@ -39,7 +39,8 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/icc-ppw-u3-02_frameworks_Tailwind/"
             },
             "development": {
               "optimization": false,

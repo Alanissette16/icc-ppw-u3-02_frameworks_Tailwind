@@ -8,23 +8,23 @@ export const heuristicaRoutes: Routes = [
     },
     {
         path: 'correspondencia-mundo-real',
-        loadComponent: () => import('./h1-page/estado-sistema/estado-sistema').then(m => m.EstadoSistema) // Temporal, cambiar por H2Page cuando esté listo
+        loadComponent: () => import('./h2-page/mundoRealMalo/mundoRealMalo').then(m => m.MundoRealMalo) 
     },
     {
         path: 'control-libertad-usuario',
-        loadComponent: () => import('./h1-page/estado-sistema/estado-sistema').then(m => m.EstadoSistema) // Temporal, cambiar por H3Page cuando esté listo
+        loadComponent: () => import('./h3-page/controlLibertadMalo/controlLibertadMalo').then(m => m.ControlLibertadMalo) 
     },
     {
         path: 'consistencia-estandares',
-        loadComponent: () => import('./h1-page/estado-sistema/estado-sistema').then(m => m.EstadoSistema) // Temporal, cambiar por H4Page cuando esté listo
+        loadComponent: () => import('./h4-page/consistenciaMalo/consistenciaMalo').then(m => m.ConsistenciaMalo) 
     },
     {
         path: 'prevencion-errores',
-        loadComponent: () => import('./h1-page/estado-sistema/estado-sistema').then(m => m.EstadoSistema) // Temporal, cambiar por H5Page cuando esté listo
+        loadComponent: () => import('./h5-page/prevencionMalo/prevencionMalo').then(m => m.PrevencionMalo) 
     },
     {
         path: 'reconocimiento-recordar',
-        loadComponent: () => import('./h1-page/estado-sistema/estado-sistema').then(m => m.EstadoSistema) // Temporal, cambiar por H6Page cuando esté listo
+        loadComponent: () => import('./h6-page/reconocimientoMalo/reconocimientoMalo').then(m => m.ReconocimientoMalo) 
     },
     {
         path: 'flexibilidad-eficiencia',

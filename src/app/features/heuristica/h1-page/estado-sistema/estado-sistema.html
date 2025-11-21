@@ -1,0 +1,106 @@
+
+    <app-header-heuristica 
+  numeroHeuristica="1"
+  titulo="Visibilidad del Estado del Sistema"
+  concepto="El sistema debe mantener a los usuarios informados sobre lo que está ocurriendo, proporcionando retroalimentación apropiada dentro de un tiempo razonable. Los usuarios nunca deben preguntarse qué está pasando en el sistema.">
+  </app-header-heuristica>
+  <!-- Sección: Ejemplo Malo -->
+   <section>
+    <div class="p-6 max-w-md mx-auto bg-white rounded shadow">
+      <h2 class="text-xl mb-4">Subir Archivo</h2>
+      
+      <!-- Sin indicadores de estado -->
+      <input type="file" (change)="onFileSelect($event)" class="mb-4">
+      
+      <!-- Botón sin feedback visual -->
+      <button (click)="uploadFile()" class="bg-blue-500 text-white px-4 py-2 rounded">
+        Subir
+      </button>
+      
+      <!-- Sin mostrar progreso -->
+      <div class="mt-4">
+        <p>Resultado aparecerá aquí...</p>
+      </div>
+    </div>
+   </section>
+   <!-- Sección: Ejemplo Bueno -->
+    <section>
+      
+    <div class=" mt-6 p-6 max-w-md mx-auto bg-white rounded-xl shadow-lg border">
+      <div class="flex items-center mb-4">
+        <span class="text-2xl mr-3">📁</span>
+        <h2 class="text-xl font-semibold">Subir Archivo</h2>
+      </div>
+      
+      <!-- Selector de archivo con estado visual -->
+      <div class="mb-4">
+        <input 
+          type="file" 
+          (change)="onFileSelect($event)" 
+          class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+        
+        @if (selectedFile) {
+          <div class="mt-2 flex items-center text-sm text-green-600">
+            <span class="mr-2">✅</span>
+            Archivo seleccionado: {{ selectedFile.name }}
+          </div>
+        }
+      </div>
+      
+      <!-- Botón con estados visuales dinámicos -->
+      <button 
+        (click)="uploadFile()" 
+        [disabled]="!selectedFile || isUploading()"
+        class="w-full py-3 px-4 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center"
+        [class.btn-ready]="selectedFile && !isUploading() && !uploadComplete()"
+        [class.btn-disabled]="!selectedFile"
+        [class.btn-uploading]="isUploading()"
+        [class.btn-complete]="uploadComplete()">
+        
+        @if (isUploading()) {
+          <!-- Spinner animado -->
+          <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          Subiendo... {{ progress() }}%
+        } @else if (uploadComplete()) {
+          <span class="mr-2">✅</span>
+          ¡Subido Exitosamente!
+        } @else {
+          <span class="mr-2">📤</span>
+          {{ selectedFile ? 'Subir Archivo' : 'Selecciona un archivo' }}
+        }
+      </button>
+      
+      <!-- Barra de progreso visible -->
+      @if (isUploading() || uploadComplete()) {
+        <div class="mt-4">
+          <div class="flex justify-between text-sm text-gray-600 mb-1">
+            <span>Progreso de subida</span>
+            <span>{{ progress() }}%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2">
+            <div 
+              class="h-2 rounded-full transition-all duration-300 ease-out"
+              [class.progress-gradient]="progress() < 100"
+              [class.complete-gradient]="progress() === 100"
+              [style.width.%]="progress()">
+            </div>
+          </div>
+        </div>
+      }
+      
+      <!-- Mensajes de estado detallados -->
+      <div class="mt-4 p-3 rounded-lg"
+      [class.status-preparing]="currentStatus() === 'preparing'"
+      [class.status-uploading]="currentStatus() === 'uploading'"
+      [class.status-completed]="currentStatus() === 'completed'"
+      [class.status-idle]="currentStatus() === 'idle'">
+        <div class="flex items-center text-sm">
+          <span class="mr-2">{{ getStatusIcon() }}</span>
+          <span class="font-medium">{{ getStatusMessage() }}</span>
+        </div>
+      </div>
+    </div>
+    </section>

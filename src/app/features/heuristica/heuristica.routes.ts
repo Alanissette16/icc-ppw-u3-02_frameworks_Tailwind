@@ -28,19 +28,19 @@ export const heuristicaRoutes: Routes = [
     },
     {
         path: 'flexibilidad-eficiencia',
-        loadComponent: () => import('./h1-page/estado-sistema/estado-sistema').then(m => m.EstadoSistema) // Temporal, cambiar por H7Page cuando esté listo
+        loadComponent: () => import('./h7-page/flexibilidadMalo/flexibilidadMalo').then(m => m.FlexibilidadMalo) 
     },
     {
         path: 'diseno-estetico-minimalista',
-        loadComponent: () => import('./h1-page/estado-sistema/estado-sistema').then(m => m.EstadoSistema) // Temporal, cambiar por H8Page cuando esté listo
+        loadComponent: () => import('./h8-page/minimalismoMalo/minimalismoMalo').then(m => m.MinimalismoMalo) // Temporal, cambiar por H8Page cuando esté listo
     },
     {
         path: 'ayuda-reconocer-errores',
-        loadComponent: () => import('./h1-page/estado-sistema/estado-sistema').then(m => m.EstadoSistema) // Temporal, cambiar por H9Page cuando esté listo
+        loadComponent: () => import('./h9-page/erroresMalo/erroresMalo').then(m => m.ErroresMalo) // Temporal, cambiar por H9Page cuando esté listo
     },
     {
         path: 'ayuda-documentacion',
-        loadComponent: () => import('./h1-page/estado-sistema/estado-sistema').then(m => m.EstadoSistema) // Temporal, cambiar por H10Page cuando esté listo
+        loadComponent: () => import('./h10-page/ayudaMalo/ayudaMalo').then(m => m.AyudaMalo) // Temporal, cambiar por H10Page cuando esté listo
     },
 
     // También mantenemos las rutas con números para compatibilidad
